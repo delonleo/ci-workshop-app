@@ -64,6 +64,6 @@ workflows:
           type: approval
           requires:
             - deploy_staging
-      - deploy_prod:
-          requires:
-            - trigger_deploy
+      # - deploy_prod:
+      #     requires:
+      #       - trigger_deploy
