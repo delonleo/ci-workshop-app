@@ -41,15 +41,15 @@ jobs:
       - run:
           name: deploy app to staging
           command: bin/deploy_to_heroku.sh ci-workshop-app-delon-staging
-  # deploy_prod:
-  #   docker:
-  #     - image: circleci/python:3.6.1
-  #   steps:
-  #     - attach_workspace:
-  #         at: .
-  #     - run:
-  #         name: deploy app to prod
-  #         command: bin/deploy_to_heroku.sh ci-workshop-app-bob-prod
+  deploy_prod:
+    docker:
+      - image: circleci/python:3.6.1
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: deploy app to prod
+          command: bin/deploy_to_heroku.sh ci-workshop-app-delon-prod
 
 
 workflows:
@@ -64,6 +64,6 @@ workflows:
           type: approval
           requires:
             - deploy_staging
-      # - deploy_prod:
-      #     requires:
-      #       - trigger_deploy
+      - deploy_prod:
+          requires:
+            - trigger_deploy
